@@ -1,1 +1,61 @@
+backend:
+  name: github
+  repo: CactusSam/cactussam.github.io
+  branch: main
+
+# kam sa budú ukladať nahrané obrázky (pre galériu v ďalšom kroku)
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "site"
+    label: "Texty stránky"
+    delete: false
+    files:
+      - name: "general"
+        label: "Hlavné texty a kontakt"
+        file: "content/site.json"
+        fields:
+          - { name: hero_eyebrow, label: "Hero – malý nadpis nad titulkom", widget: string }
+          - { name: hero_title, label: "Hero – veľký nadpis", widget: text }
+          - { name: hero_highlight, label: "Hero – zvýraznené slovo (modré)", widget: string, required: false }
+          - { name: hero_lead, label: "Hero – popis pod nadpisom", widget: text }
+          - name: facts
+            label: "Tri fakty v hero"
+            widget: list
+            max: 3
+            fields:
+              - { name: big, label: "Veľký text", widget: string }
+              - { name: small, label: "Malý popis", widget: string }
+          - { name: about_title, label: "O nás – nadpis", widget: string }
+          - { name: about_text, label: "O nás – text", widget: text }
+          - { name: band_title, label: "Spodný pruh – nadpis", widget: string }
+          - { name: band_text, label: "Spodný pruh – text", widget: text }
+          - { name: phone, label: "Telefón (ako sa zobrazí)", widget: string, hint: "napr. 0908 279 749" }
+          - { name: phone_link, label: "Telefón na volanie", widget: string, hint: "medzinárodný tvar: +421908279749" }
+          - { name: email, label: "E-mail", widget: string }
+          - { name: address, label: "Adresa – 1. riadok", widget: string }
+          - { name: address_sub, label: "Adresa – 2. riadok", widget: string }
+          - { name: maps_query, label: "Adresa pre navigáciu (mapy)", widget: string }
+          - { name: instagram, label: "Instagram odkaz (URL)", widget: string, required: false }
+
+  - name: "pricing"
+    label: "Cenník"
+    delete: false
+    files:
+      - name: "prices"
+        label: "Položky cenníka"
+        file: "content/prices.json"
+        fields:
+          - name: items
+            label: "Položky"
+            label_singular: "Položka"
+            widget: list
+            fields:
+              - { name: name, label: "Názov", widget: string }
+              - { name: desc, label: "Popis", widget: text, required: false }
+              - { name: price, label: "Cena", widget: string, hint: "napr. 45 €  alebo  260–400 €" }
+              - { name: icon, label: "Ikona", widget: select, default: "tooth", options: ["tooth", "child", "student", "airflow", "fluor", "star"] }
+              - { name: featured, label: "Zvýrazniť (modrá karta)", widget: boolean, default: false }
+              - { name: tag, label: "Štítok na karte", widget: string, required: false, hint: "zobrazí sa len pri zvýraznenej karte" }
 
